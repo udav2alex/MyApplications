@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Applications</string>
+    <string name="add_new_app_desc">Add new application button</string>
+    <string name="save_app_record_button_text">Save app record</string>
+    <string name="name_input_layout_hint">Application name</string>
+    <string name="package_input_layout_hint">Application package</string>
+    <string name="tags_input_layout_hint">Comments</string>
 </resources>
