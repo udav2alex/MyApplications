@@ -11,7 +11,7 @@
         android:layout_margin="@dimen/gap_half_8dp"
         android:hint="@string/name_input_layout_hint"
         app:layout_constraintBottom_toTopOf="@+id/package_input_layout"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delete_app_button"
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -61,6 +61,16 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/delete_app_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/gap_standard_16dp"
+        android:text="@string/delete_app_record_button_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/save_app_button"

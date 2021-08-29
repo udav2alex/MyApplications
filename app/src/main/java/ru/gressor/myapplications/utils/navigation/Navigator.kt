@@ -1,8 +1,9 @@
 package ru.gressor.myapplications.utils.navigation
 
-import androidx.fragment.app.Fragment
+import ru.gressor.myapplications.domain.entities.App
 
 interface Navigator {
+    fun openAppEditor(app: App)
     fun addNewApp()
     fun goBack()
 }

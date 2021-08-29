@@ -19,9 +19,9 @@ import ru.gressor.myapplications.domain.entities.App
 
 class AppEditorFragment : Fragment() {
     private var binding: FragmentAppEditorBinding? = null
-    private var app: App? = null
+    private var oldApp: App? = null
     private val vModel: AppEditorVModel by viewModels {
-        AppEditorVModelFactory(app)
+        AppEditorVModelFactory(oldApp)
     }
 
     override fun onCreateView(
@@ -29,7 +29,7 @@ class AppEditorFragment : Fragment() {
     ) = FragmentAppEditorBinding.inflate(inflater, container, false)
         .also {
             binding = it
-            app = arguments?.getParcelable(KEY_APP) as? App
+            oldApp = arguments?.getParcelable(KEY_APP) as? App
         }
         .root
 
@@ -43,10 +43,13 @@ class AppEditorFragment : Fragment() {
         views {
             saveAppButton.setOnClickListener {
                 vModel.saveNewApp(
-                    nameEditText.text.toString(),
                     packageEditText.text.toString(),
+                    nameEditText.text.toString(),
                     tagsEditText.text.toString()
                 )
+            }
+            deleteAppButton.setOnClickListener {
+                vModel.deleteApp()
             }
         }
     }

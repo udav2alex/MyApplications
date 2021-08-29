@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import ru.gressor.myapplications.data.db.entities.StoredApp
 
 
-@Database(entities = [StoredApp::class], version = 1)
+@Database(entities = [StoredApp::class], version = 2)
 abstract class StoredAppsDatabase : RoomDatabase() {
     abstract val dao: AppsDao
 
@@ -18,6 +18,7 @@ abstract class StoredAppsDatabase : RoomDatabase() {
                 StoredAppsDatabase::class.java,
                 "apps-database"
             )
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }

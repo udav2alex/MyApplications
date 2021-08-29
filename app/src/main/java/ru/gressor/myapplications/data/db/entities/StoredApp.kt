@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "apps")
 data class StoredApp(
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
+    val id: Int = 0,
     val appPackage: String,
     val name: String,
     val tags: String = "",

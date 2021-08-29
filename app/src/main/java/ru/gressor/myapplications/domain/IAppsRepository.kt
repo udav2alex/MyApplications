@@ -7,4 +7,5 @@ interface IAppsRepository {
     val appsListFlow: Flow<List<App>>
     suspend fun save(app: App)
     suspend fun remove(app: App)
+    suspend fun update(app: App)
 }

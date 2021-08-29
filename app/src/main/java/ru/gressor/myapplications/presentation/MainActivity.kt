@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.gressor.myapplications.databinding.ActivityMainBinding
+import ru.gressor.myapplications.domain.entities.App
 import ru.gressor.myapplications.presentation.app_editor.AppEditorFragment
 import ru.gressor.myapplications.presentation.app_editor.AppEditorState
 import ru.gressor.myapplications.presentation.apps_list.AppsListFragment
@@ -35,6 +36,15 @@ class MainActivity : AppCompatActivity(), Navigator {
         containerId?.let {
             supportFragmentManager.beginTransaction()
                 .replace(it, AppEditorFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+    }
+
+    override fun openAppEditor(app: App) {
+        containerId?.let {
+            supportFragmentManager.beginTransaction()
+                .replace(it, AppEditorFragment.getInstance(app))
                 .addToBackStack(null)
                 .commit()
         }

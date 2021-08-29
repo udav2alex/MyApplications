@@ -18,4 +18,6 @@ class AppsRepository: IAppsRepository {
     override suspend fun save(app: App) = dao.insert(app.toStoredApp())
 
     override suspend fun remove(app: App) = dao.delete(app.toStoredApp())
+
+    override suspend fun update(app: App) = dao.update(app.toStoredApp())
 }

@@ -30,7 +30,9 @@ class AppsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         views {
-            appsListView.adapter = AppsListAdapter()
+            appsListView.adapter = AppsListAdapter {
+                navigator?.openAppEditor(it)
+            }
 
             addAppButton.setOnClickListener {
                 navigator?.addNewApp()

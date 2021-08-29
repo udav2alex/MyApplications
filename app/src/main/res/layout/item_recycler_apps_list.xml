@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/caption_text_size_24sp"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Caption" />
+            tools:text="Caption / name" />
 
         <TextView
             android:id="@+id/package_text_view"

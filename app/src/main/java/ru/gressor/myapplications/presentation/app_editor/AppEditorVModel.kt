@@ -11,7 +11,7 @@ import ru.gressor.myapplications.presentation.app_editor.AppEditorState.*
 import ru.gressor.myapplications.utils.di.locateLazily
 import ru.gressor.myapplications.utils.navigation.Navigator
 
-class AppEditorVModel(app: App?) : ViewModel() {
+class AppEditorVModel(private val app: App?) : ViewModel() {
 
     private val repository: IAppsRepository by locateLazily()
     private val navigator: Navigator by locateLazily()
@@ -27,10 +27,23 @@ class AppEditorVModel(app: App?) : ViewModel() {
             name.isBlank() -> _stateFlow.value = Error(Throwable("Enter non-blank name!"))
             else -> {
                 viewModelScope.launch {
-                    repository.save(App(appPackage, name, tags))
+                    if (app == null) {
+                        repository.save(App(0, appPackage, name, tags))
+                    } else {
+                        repository.update(App(app.id, appPackage, name, tags))
+                    }
                     navigator.goBack()
                 }
             }
+        }
+    }
+
+    fun deleteApp() {
+        viewModelScope.launch {
+            if (app != null) {
+                repository.remove(app)
+            }
+            navigator.goBack()
         }
     }
 }

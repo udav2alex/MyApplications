@@ -9,6 +9,9 @@ interface AppsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(storedApp: StoredApp)
 
+    @Update
+    suspend fun update(storedApp: StoredApp)
+
     @Delete
     suspend fun delete(storedApp: StoredApp)
 
