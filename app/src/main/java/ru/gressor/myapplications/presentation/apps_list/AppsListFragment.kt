@@ -10,25 +10,32 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import ru.gressor.myapplications.databinding.FragmentAppsListBinding
 import ru.gressor.myapplications.presentation.apps_list.adapter.AppsListAdapter
+import ru.gressor.myapplications.utils.navigation.Navigator
 
 class AppsListFragment : Fragment() {
     private var binding: FragmentAppsListBinding? = null
     private val vModel: AppsListVModel by viewModels()
 
     private val adapter get() = views { appsListView.adapter as? AppsListAdapter }
+    private val navigator get() = context as? Navigator
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ) = FragmentAppsListBinding.inflate(inflater)
+    ) = FragmentAppsListBinding.inflate(inflater, container, false)
         .also { binding = it }
         .root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        views { appsListView.adapter = AppsListAdapter() }
+        views {
+            appsListView.adapter = AppsListAdapter()
+
+            addAppButton.setOnClickListener {
+                navigator?.addNewApp()
+            }
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

@@ -5,4 +5,6 @@
     <string name="name_input_layout_hint">Application name</string>
     <string name="package_input_layout_hint">Application package</string>
     <string name="tags_input_layout_hint">Comments</string>
+    <string name="save_app_button_caption_new">Save application</string>
+    <string name="save_app_button_caption_old">Update application info</string>
 </resources>

@@ -1,27 +1,47 @@
 package ru.gressor.myapplications.presentation
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.gressor.myapplications.databinding.ActivityMainBinding
+import ru.gressor.myapplications.presentation.app_editor.AppEditorFragment
+import ru.gressor.myapplications.presentation.app_editor.AppEditorState
 import ru.gressor.myapplications.presentation.apps_list.AppsListFragment
+import ru.gressor.myapplications.utils.di.ServiceLocator
+import ru.gressor.myapplications.utils.navigation.Navigator
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Navigator {
     private var binding: ActivityMainBinding? = null
-
+    private val containerId get() = views { fragmentContainer }?.id
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ServiceLocator.register<Navigator>(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         if (savedInstanceState == null) {
-            val containerId = views { fragmentContainer }?.id
-                ?: throw RuntimeException("Can't find ID for fragment_container!")
+            containerId?.let {
+                supportFragmentManager.beginTransaction()
+                    .add(it, AppsListFragment())
+                    .commit()
+            }
+        }
+    }
+
+    override fun addNewApp() {
+        containerId?.let {
             supportFragmentManager.beginTransaction()
-                .add(containerId, AppsListFragment())
+                .replace(it, AppEditorFragment())
+                .addToBackStack(null)
                 .commit()
         }
+    }
+
+    override fun goBack() {
+        onBackPressed()
     }
 
     override fun onDestroy() {
