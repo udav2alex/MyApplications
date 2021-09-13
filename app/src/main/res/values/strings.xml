@@ -8,4 +8,9 @@
     <string name="save_app_button_caption_new">Save application info</string>
     <string name="save_app_button_caption_old">Update application info</string>
     <string name="delete_app_record_button_text">Delete application info</string>
+    <string name="menu_item_filter_title">Filter</string>
+    <string name="menu_item_settings_title">Settings</string>
+    <string name="preferences_switch_use_room_summary_on">Use Room persistence library to save and load data from SQLight database</string>
+    <string name="preferences_switch_use_room_summary_off">Use core SQLite persistence library to save and load data from database</string>
+    <string name="preferences_switch_use_room_title">Use Room persistence library</string>
 </resources>

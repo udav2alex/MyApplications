@@ -6,4 +6,6 @@ interface Navigator {
     fun openAppEditor(app: App)
     fun addNewApp()
     fun goBack()
+    fun openFilterEditor()
+    fun openSettingsEditor()
 }

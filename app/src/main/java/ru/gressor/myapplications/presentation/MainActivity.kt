@@ -1,13 +1,12 @@
 package ru.gressor.myapplications.presentation
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.gressor.myapplications.databinding.ActivityMainBinding
 import ru.gressor.myapplications.domain.entities.App
 import ru.gressor.myapplications.presentation.app_editor.AppEditorFragment
-import ru.gressor.myapplications.presentation.app_editor.AppEditorState
 import ru.gressor.myapplications.presentation.apps_list.AppsListFragment
+import ru.gressor.myapplications.presentation.settings.SettingsFragment
 import ru.gressor.myapplications.utils.di.ServiceLocator
 import ru.gressor.myapplications.utils.navigation.Navigator
 
@@ -45,6 +44,19 @@ class MainActivity : AppCompatActivity(), Navigator {
         containerId?.let {
             supportFragmentManager.beginTransaction()
                 .replace(it, AppEditorFragment.getInstance(app))
+                .addToBackStack(null)
+                .commit()
+        }
+    }
+
+    override fun openFilterEditor() {
+        TODO("Not yet implemented")
+    }
+
+    override fun openSettingsEditor() {
+        containerId?.let {
+            supportFragmentManager.beginTransaction()
+                .replace(it, SettingsFragment())
                 .addToBackStack(null)
                 .commit()
         }
