@@ -34,6 +34,20 @@ class AppsSQLiteOpenHelper(context: Context) :
         writableDatabase.insert(DB_TABLE_NAME_APPS, null, values)
     }
 
+    fun update(storedApp: StoredApp) {
+        val values = ContentValues().apply {
+            put(DB_TABLE_APPS_COLUMN_PACKAGE, storedApp.appPackage)
+            put(DB_TABLE_APPS_COLUMN_NAME, storedApp.name)
+            put(DB_TABLE_APPS_COLUMN_TAGS, storedApp.tags)
+            put(DB_TABLE_APPS_COLUMN_INSTALLED, if (storedApp.isInstalled) 1 else 0)
+        }
+        writableDatabase.update(DB_TABLE_NAME_APPS, values, "id = ${storedApp.id}", null)
+    }
+
+    fun delete(storedApp: StoredApp) {
+        writableDatabase.delete(DB_TABLE_NAME_APPS, "id = ${storedApp.id}", null)
+    }
+
     fun getAllRecords(): List<StoredApp> = mutableListOf<StoredApp>().apply {
         getCursorWithApps().use {
             while (it.moveToNext()) {

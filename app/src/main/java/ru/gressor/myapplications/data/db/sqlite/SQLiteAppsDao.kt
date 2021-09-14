@@ -19,12 +19,12 @@ class SQLiteAppsDao(val context: Context) : AppsDao {
     }
 
     override suspend fun update(storedApp: StoredApp) {
-//        TODO("Not yet implemented")
+        dbHelper.update(storedApp)
         updateFlow()
     }
 
     override suspend fun delete(storedApp: StoredApp) {
-//        TODO("Not yet implemented")
+        dbHelper.delete(storedApp)
         updateFlow()
     }
 
